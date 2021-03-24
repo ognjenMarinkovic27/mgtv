@@ -9,11 +9,7 @@ export default function OtherVideos ({ videos }) {
             <UnorderedList display="flex" justifyContent="space-around" w="100%" listStyleType="none" flexWrap="wrap"> 
                 {videos.map((video) => (
                     <ListItem key={video.id.videoId}>
-                        <Image
-                            src={`https://i.ytimg.com/vi/${video.id.videoId}/maxresdefault.jpg`}
-                            width={480}
-                            height={270}
-                        />
+                        <VideoCard thumbnailUrl={`https://i.ytimg.com/vi/${video.id.videoId}/maxresdefault.jpg`} title={video.snippet.title}/>
                     </ListItem>
                 ))}
             </UnorderedList>
