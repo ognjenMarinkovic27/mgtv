@@ -5,8 +5,9 @@ import YoutubeEmbed from '../youtube-embed/youtube-embed'
 
 
 export default function NewestVideo ({ video }) {
+
     return (
-        <Box bg="tomato" backgroundImage='url(email-pattern.png)' w="100%" display="flex" flexDir="column" alignItems="center" p="32px">
+        <Box as="main" backgroundImage='url(email-pattern.png)' w="100%" display="flex" flexDir="column" alignItems="center" p="32px">
             <div dangerouslySetInnerHTML={{__html:"<!-- Background pattern from Toptal Subtle Patterns -->"}} />
             <Box display="flex" flexDir="column" alignItems="center" mb="24px">
                 <Heading as="h1" textTransform="uppercase" size="2xl">Најновије</Heading>
