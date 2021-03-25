@@ -16,9 +16,6 @@ export async function getStaticProps() {
   const data = await res.json()
   const videos = await data.items
 
-  console.log(data)
-  console.log('######################################################################################################')
-
   return {
     props: {
       videos
@@ -30,12 +27,6 @@ export default function Home({ videos }) {
 
   const newestVideo = videos[0]
   const otherVideos = videos.slice(1)
-
-  console.log(videos)
-  console.log('######################################################################################################')
-  console.log(newestVideo)
-  console.log('######################################################################################################')
-  console.log(otherVideos)
 
   return (
     <> 

@@ -1,18 +1,20 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { Box } from '@chakra-ui/react'
+import { AspectRatio, Box } from '@chakra-ui/react'
 
 const YoutubeEmbed = ({ embedId }) => (
-  <Box className="video-responsive">
-    <iframe
-      width="853"
-      height="480"
-      src={`https://www.youtube.com/embed/${embedId}`}
-      frameBorder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowFullScreen
-      title="Embedded youtube"
-    />
+  <Box>
+    <AspectRatio w={[320,400,560,800,800]} ratio={16 / 9}>
+      <iframe
+        width="853"
+        height="480"
+        src={`https://www.youtube.com/embed/${embedId}`}
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+        title="Embedded youtube"
+      />
+    </AspectRatio>
   </Box>
 );
 
