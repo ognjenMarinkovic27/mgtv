@@ -13,12 +13,12 @@ const YOUTUBE_API="https://youtube.googleapis.com/youtube/v3/playlistItems"
 
 export async function getStaticProps() {
   const res = await fetch(`${YOUTUBE_API}?part=snippet%2CcontentDetails&maxResults=4&playlistId=${PLAYLIST_ID}&key=${process.env.YOUTUBE_API_KEY}`)
-  console.log(res)
-  const data = await res.json
-  const videos = await data.items ? data.items : []
-  
-  console.log(`${YOUTUBE_API}?key=${process.env.YOUTUBE_API_KEY}&part=snippet%2CcontentDetails&maxResults=50&playlistId=${PLAYLIST_ID}`)
-  
+  const data = await res.json()
+  const videos = await data.items
+
+  console.log(data)
+  console.log('######################################################################################################')
+
   return {
     props: {
       videos
@@ -28,8 +28,14 @@ export async function getStaticProps() {
 
 export default function Home({ videos }) {
 
-  const newestVideo = videos.shift()
-  const otherVideos = videos
+  const newestVideo = videos[0]
+  const otherVideos = videos.slice(1)
+
+  console.log(videos)
+  console.log('######################################################################################################')
+  console.log(newestVideo)
+  console.log('######################################################################################################')
+  console.log(otherVideos)
 
   return (
     <> 
