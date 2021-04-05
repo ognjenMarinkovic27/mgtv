@@ -1,25 +1,19 @@
-import { Box, ListItem, List, UnorderedList } from '@chakra-ui/react'
+import { Box, ListItem, UnorderedList, Heading, LinkBox, LinkOverlay } from '@chakra-ui/react'
 import ArticleCard from '../components/article-card/article-card'
 
 import TopBar from '../components/topbar/topbar'
 
+import { getArticlesData } from '../lib/articles'
+
+import NextLink from 'next/link'
+
 export async function getStaticProps() {
+
+    const articles = await getArticlesData()
+    
     return {
         props: {
-            articles: [
-                {
-                    title: 'Невероватно! Члан српског тима ЕЈОИ-а пришао женској особи на близини мањој од 1.2 метара.',
-                    imgUrl: 'https://www.mg.edu.rs/uploads/attachment/vest/6346/large_%D0%95EJOI-1.jpg'
-                },
-                {
-                    title: 'Ексклузивно! 100% интернационалног тима из информатике тврди да тренутно не желе романтичну везу.',
-                    imgUrl: 'https://www.mg.edu.rs/uploads/attachment/vest/6346/large_EJOI-2.jpg'
-                },
-                {
-                    title: 'Невероватно! Члан српског тима ЕЈОИ-а пришао женској особи на близини мањој од 1.2 метара.',
-                    imgUrl: 'https://www.mg.edu.rs/uploads/attachment/vest/6346/large_%D0%95EJOI-1.jpg'
-                }
-            ]
+            articles
         }
     }
 }
@@ -28,11 +22,18 @@ export default function Articles({ articles }) {
     return (
         <Box backgroundImage='url(email-pattern.png)'>
             <TopBar />
-            <Box h='100vh' w={['100%', '100%', '90%', '75%']} m='auto' bg='white'>
-                <UnorderedList listStyleType='none' m='0'>
+            <Heading textAlign='center' m='16px' size='2xl'>Најновија дешавања</Heading>
+            <Box h='100vh' w={['100%', '100%', '90%', '75%']} m='auto' bg='#FAFAFA'>
+                <UnorderedList listStyleType='none' m='0' p='8px'>
                     {articles.map((article) => (
-                        <ListItem m='8px'>
-                            <ArticleCard article={article} />
+                        <ListItem key={article.id} mb='8px'>
+                            <LinkBox as='article' >
+                                <NextLink href={`/articles/${article.id}`} passHref>
+                                    <LinkOverlay>
+                                        <ArticleCard article={article} />
+                                    </LinkOverlay>
+                                </NextLink>
+                            </LinkBox>
                         </ListItem>
                     ))}
                 </UnorderedList>
