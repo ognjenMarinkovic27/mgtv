@@ -17,6 +17,7 @@ export default function ArticleCard({ article }) {
                     />
                 </Box>
             </Box>
+            <Text fontFamily='Oswald' opacity='50%' fontSize={['10px', '10px', '10px', '10px','12px']}>{article.createdAt}</Text>
         </Box>
     )
 }

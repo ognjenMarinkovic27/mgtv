@@ -1,5 +1,6 @@
 import '../styles/globals.css'
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+import { AuthProvider } from '../auth/authProvider'
 import Fonts from '../components/fonts/fonts'
 
 
@@ -11,7 +12,9 @@ function MyApp({ Component, pageProps }) {
   return (
     <ChakraProvider theme={theme}>
       <Fonts />
-      <Component {...pageProps} />
+      <AuthProvider>
+        <Component {...pageProps} />
+      </AuthProvider>
     </ChakraProvider>
   );
 }
