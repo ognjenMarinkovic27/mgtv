@@ -6,7 +6,6 @@ import TopBar from '../components/topbar/topbar'
 import { Box } from '@chakra-ui/react'
 import NewestVideo from '../components/newest-video/newest-video'
 import OtherVideos from '../components/other-videos/other-videos'
-import VideoCard from '../components/video-card/video-card'
 
 const PLAYLIST_ID = "UU94DrDp_sU68e2nol9-sJJg";
 const YOUTUBE_API="https://youtube.googleapis.com/youtube/v3/playlistItems"

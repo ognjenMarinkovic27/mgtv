@@ -5,7 +5,6 @@ import firebaseAdmin from '../firebaseAdmin'
 import nookies from 'nookies'
 
 export async function getServerSideProps(ctx) {
-    console.log('what')
     try {
         const cookies = nookies.get(ctx);
         const token = await firebaseAdmin.auth().verifyIdToken(cookies.token);
@@ -30,7 +29,6 @@ export default function Login() {
     async function onSubmit(data) {
         console.log(data.email, data.password);
         await firebase.auth().signInWithEmailAndPassword(data.email, data.password);
-        console.log('lol')
         window.location.href='/authenticated';
     }
 
