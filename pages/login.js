@@ -1,6 +1,28 @@
 import { Box, Input, FormControl, FormLabel, Button } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form'
 import firebase from '../firebase'
+import firebaseAdmin from '../firebaseAdmin'
+import nookies from 'nookies'
+
+export async function getServerSideProps(ctx) {
+    console.log('what')
+    try {
+        const cookies = nookies.get(ctx);
+        const token = await firebaseAdmin.auth().verifyIdToken(cookies.token);
+        return {
+            redirect: {
+                permanent: false,
+                destination: '/authenticated',
+            },
+            props: {}
+        }
+    }
+    catch(err) {
+        return {
+            props: {},
+        };
+    }
+}
 
 export default function Login() {
     const { register, handleSubmit } = useForm()

@@ -4,35 +4,15 @@ import { useRouter } from 'next/router'
 
 import { Box, Text, Button } from '@chakra-ui/react'
 
-import firebaseAdmin from '../firebaseAdmin';
+
 import firebase from '../firebase'
 import Link from 'next/link';
+import { checkToken } from '../auth/checkToken';
 
 export async function getServerSideProps(ctx) {
 
-    try {
-        const cookies = nookies.get(ctx);
-        const token = await firebaseAdmin.auth().verifyIdToken(cookies.token);
-        console.log(token);
-        const { uid, email } = token;
-
-        const message = `Улоговани сте као ${email}`;
-
-        return {
-            props: { 
-                message
-            }
-        }
-    }
-    catch(err) {
-        return {
-            redirect: {
-                permanent: false,
-                destination: "/login",
-            },
-            props: {},
-        };
-    }
+    const cookies = nookies.get(ctx);
+    return await checkToken(cookies.token, '/login')
 
 }
 

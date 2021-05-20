@@ -1,5 +1,5 @@
 import nookies from 'nookies';
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState, useEffect, useContext } from 'react';
 import firebase from '../firebase'
 
 const AuthContext = createContext({
