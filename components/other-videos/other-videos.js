@@ -1,5 +1,4 @@
 import { ListItem, UnorderedList, Box, Heading } from "@chakra-ui/layout";
-import Image from 'next/image'
 
 import VideoCard from '../video-card/video-card'
 
