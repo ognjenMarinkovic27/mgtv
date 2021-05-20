@@ -14,15 +14,12 @@
     "@google-cloud/storage": "^5.8.5",
     "firebase": "^8.6.1",
     "firebase-admin": "^9.8.0",
-    "framer-motion": "^3.3.0",
-    "fs": "^0.0.1-security",
     "next": "10.0.6",
     "nextjs": "^0.0.3",
     "node-datetime": "^2.1.2",
     "nookies": "^2.5.2",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "react-hook-form": "^7.6.1",
-    "xmlhttprequest": "^1.8.0"
+    "react-hook-form": "^7.6.1"
   }
 }
