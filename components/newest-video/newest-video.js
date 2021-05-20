@@ -36,6 +36,7 @@ export default function NewestVideo ({ video }) {
                                     src={'/youtube.png'}
                                     height={64}
                                     width={64}
+                                    priority={true}
                                 />
                             </Box>
                             <Box w='100%' h='100%' position='absolute' bg='rgba(0, 0, 0, 0.3);'></Box>

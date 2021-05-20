@@ -14,6 +14,7 @@ export default function VideoCard ({ videoId, title }) {
                     src={thumbnailUrl}
                     width={445}
                     height={250}
+                    priority={true}
                 />
                 {
                     /*  TODO:
