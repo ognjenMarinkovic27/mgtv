@@ -13,6 +13,8 @@ import { checkToken } from '../auth/checkToken'
 import nookies from 'nookies'
 import TopBar from '../components/topbar/topbar';
 
+import firebase from '../firebase'
+
 
 
 
@@ -114,6 +116,17 @@ export default function ControlPanel({ articles }) {
                     </UnorderedList>
                 </Box>
             </Box>
+            <Button shadow='xl' _hover={null} bg='linear-gradient(#AE72CE, #9C56C2);' color='white' position='fixed' bottom='32px' right='32px' 
+                onClick={async () => {
+                    await firebase
+                        .auth()
+                        .signOut()
+                        .then(() => {
+                        router.push("/");
+                        });
+                    }}>
+                Излогуј се
+            </Button>
         </Box>
     );
 }
