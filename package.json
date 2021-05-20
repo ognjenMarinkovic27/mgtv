@@ -14,6 +14,7 @@
     "@google-cloud/storage": "^5.8.5",
     "firebase": "^8.6.1",
     "firebase-admin": "^9.8.0",
+    "framer-motion": "^4.1.17",
     "next": "10.0.6",
     "nextjs": "^0.0.3",
     "node-datetime": "^2.1.2",
