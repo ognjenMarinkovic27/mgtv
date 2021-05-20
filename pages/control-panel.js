@@ -6,13 +6,26 @@ import { useRouter } from 'next/router';
 
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { uploadImage } from '../lib/images';
+import { getImageUrls } from '../lib/adminImages'
 
-export async function getServerSideProps() {
+import { checkToken } from '../auth/checkToken'
+import nookies from 'nookies'
 
-    const articles = await getArticlesData()
-    
-    console.log(articles)
+
+
+
+export async function getServerSideProps(ctx) {
+
+    const cookies = nookies.get(ctx);
+    let res = await checkToken(cookies.token, '/login')
+
+    const articlesWithoutUrl = await getArticlesData()
+
+    const articles = await getImageUrls(articlesWithoutUrl)
+
     return {
+        ...res,
         props: {
             articles
         }
@@ -21,17 +34,38 @@ export async function getServerSideProps() {
 
 export default function ControlPanel({ articles }) {
 
-    const router=useRouter();
 
     const [showCreatePost, setShowCreatePost] = useState(0);
+    const [image, setImage] = useState(null);
 
     const { register, handleSubmit } = useForm()
 
+    const router = useRouter()
+
     async function onSubmit (data) {
-        console.log('lol')
-        const res = await addArticle(data.title, data.content, 'https://www.mg.edu.rs/uploads/attachment/vest/6346/large_%D0%95EJOI-1.jpg')
-        console.log(res)
+
+        const res = await addArticle(data.title, data.content)
+        if(image) {
+            const res1 = await uploadImage(image, res.id)
+        }
         router.replace(router.asPath)
+    }
+
+    async function onImageChange (e) {
+        const reader = new FileReader();
+        let file = e.target.files[0];
+
+        if(file) {
+            reader.onload = () => {
+                if (reader.readyState === 2) {
+                    setImage(file);
+                }
+            };
+            reader.readAsDataURL(e.target.files[0]);
+            } 
+        else {
+            setImage(null);
+        }
     }
 
     return (
@@ -49,7 +83,8 @@ export default function ControlPanel({ articles }) {
                             <Box display='flex' w='40%' justifyContent='space-between'>
                                 <Button w='48%' variant='outline' onClick={()=>{setShowCreatePost(0)}}>Откажи</Button>
                                 <Button w='48%' type='submit'>Објави</Button>
-                            </Box>    
+                            </Box>
+                            <Input type='file' border='none' _focus="{{outline:none}}" accept="image/x-png,image/jpeg" onChange={(e) => {onImageChange(e);}}></Input>   
                         </Box>
                     </form>
                 : null}
@@ -66,7 +101,6 @@ export default function ControlPanel({ articles }) {
                             <Button bg='white' color='red' position='absolute' right='8px' bottom='8px' zIndex='1' shadow='xl'
                                 onClick={async () => {
                                     let res = await deleteArticle(article.id)
-                                    console.log(res)
                                     router.replace(router.asPath)
                                 }}
                             >

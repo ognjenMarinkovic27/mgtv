@@ -4,13 +4,16 @@ import ArticleCard from '../components/article-card/article-card'
 import TopBar from '../components/topbar/topbar'
 
 import { getArticlesData } from '../lib/articles'
+import { getImageUrls } from '../lib/adminImages'
 
 import NextLink from 'next/link'
 
 export async function getStaticProps() {
 
-    const articles = await getArticlesData()
-    
+    const articlesWithoutUrl = await getArticlesData()
+
+    const articles = await getImageUrls(articlesWithoutUrl)
+
     return {
         props: {
             articles

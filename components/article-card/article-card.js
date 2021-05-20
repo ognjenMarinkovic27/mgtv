@@ -2,6 +2,7 @@ import { Box, Heading, Text } from '@chakra-ui/react'
 import Image from 'next/image'
 
 export default function ArticleCard({ article }) {
+
     return (
         <Box w='100%' m='auto' bg='#F2F2F2' p='16px' display='flex' justifyContent='space-between' flexWrap='wrap-reverse'>
             <Box w={['100%', '100%', '70%']} display='flex' flexDir='column'>
@@ -12,8 +13,9 @@ export default function ArticleCard({ article }) {
                 <Box>
                     <Image
                         src={article.imgUrl}
-                        width={734}
-                        height={478}
+                        height={720}
+                        width={1280}
+                        layout='responsive'
                     />
                 </Box>
             </Box>
