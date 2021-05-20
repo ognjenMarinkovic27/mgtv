@@ -28,7 +28,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({ params }) {
     const articleData = await getArticleData(params.id)
 
-    const dt = nodedt.create((new Date()).valueOf() + 100000)
+    const dt = nodedt.create((new Date()).valueOf() + 120)
     const exp = dt.format("m-d-Y H:M:S")
 
     const file = firebaseAdmin.storage().bucket().file(params.id)
@@ -44,7 +44,8 @@ export async function getStaticProps({ params }) {
         props: {
             articleData,
             imgUrl
-        }
+        },
+        revalidate: 60
     }
 }
 
