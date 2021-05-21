@@ -32,14 +32,7 @@ export async function getStaticProps({ params }) {
     const exp = dt.format("m-d-Y H:M:S")
 
     const file = firebaseAdmin.storage().bucket().file(params.id)
-    let imgUrl
-    await file.getSignedUrl({
-        action: 'read',
-        expires: exp
-    }).then(signedUrls => {
-        imgUrl = signedUrls[0]
-    })
-
+    let imgUrl = `https://firebasestorage.googleapis.com/v0/b/mg-tv-308523.appspot.com/o/${params.id}?alt=media`
     return {
         props: {
             articleData,
