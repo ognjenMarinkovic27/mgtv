@@ -1,7 +1,5 @@
-import ArticleCard from '../components/article-card/article-card';
-import { addArticle, deleteArticle, getArticlesData } from '../lib/articles'
-import { Box, ListItem, UnorderedList, Button, LinkBox, LinkOverlay, Input, Textarea } from '@chakra-ui/react'
-import NextLink from 'next/link'
+import { addArticle, getArticlesData } from '../lib/articles'
+import { Box, Button, Input, Textarea } from '@chakra-ui/react'
 import { useRouter } from 'next/router';
 
 import { useState } from 'react';
@@ -14,6 +12,7 @@ import nookies from 'nookies'
 import TopBar from '../components/topbar/topbar';
 
 import firebase from '../firebase'
+import ArticlesList from '../components/articles-list/articles-list';
 
 
 
@@ -40,6 +39,7 @@ export default function ControlPanel({ articles }) {
 
     const [showCreatePost, setShowCreatePost] = useState(0);
     const [image, setImage] = useState(null);
+    const [imgSize, setImgSize] = useState({w:0,h:0});
 
     const { register, handleSubmit } = useForm()
 
@@ -47,16 +47,27 @@ export default function ControlPanel({ articles }) {
 
     async function onSubmit (data) {
 
-        const res = await addArticle(data.title, data.content)
+        const res = await addArticle(data.title, data.content, imgSize)
         if(image) {
             const res1 = await uploadImage(image, res.id)
         }
         router.replace(router.asPath)
     }
 
+
+
     async function onImageChange (e) {
         const reader = new FileReader();
         let file = e.target.files[0];
+
+        const u = URL.createObjectURL(file)
+        const img = new Image();
+
+        img.onload = () => {
+            setImgSize({w: img.width, h: img.height})
+        }
+
+        img.src = u
 
         if(file) {
             reader.onload = () => {
@@ -93,27 +104,7 @@ export default function ControlPanel({ articles }) {
                             </Box>
                         </form>
                     : null}
-                    <UnorderedList w='100%' listStyleType='none' m='0' p='8px'>
-                        {articles.map((article) => (
-                            <ListItem key={article.id} mb='8px' position='relative'>
-                                <LinkBox as='article' >
-                                    <NextLink href={`/articles/${article.id}`} passHref>
-                                        <LinkOverlay>
-                                            <ArticleCard article={article} />
-                                        </LinkOverlay>
-                                    </NextLink>
-                                </LinkBox>
-                                <Button bg='white' color='red' position='absolute' right='8px' bottom='8px' zIndex='1' shadow='xl'
-                                    onClick={async () => {
-                                        let res = await deleteArticle(article.id)
-                                        router.replace(router.asPath)
-                                    }}
-                                >
-                                    Обриши
-                                </Button>
-                            </ListItem>
-                        ))}
-                    </UnorderedList>
+                    <ArticlesList articles={articles} deleteButtons={true} />
                 </Box>
             </Box>
             <Button shadow='xl' _hover={null} bg='linear-gradient(#AE72CE, #9C56C2);' color='white' position='fixed' bottom='32px' right='32px' 

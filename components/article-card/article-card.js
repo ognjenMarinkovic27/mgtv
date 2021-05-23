@@ -1,7 +1,7 @@
 import { Box, Heading, Text } from '@chakra-ui/react'
 import Image from 'next/image'
 
-export default function ArticleCard({ article }) {
+export default function ArticleCard({ article, lazyLoad }) {
 
     return (
         <Box w='100%' m='auto' bg='#F2F2F2' p='16px' display='flex' justifyContent='space-between' flexWrap='wrap-reverse'>
@@ -13,9 +13,10 @@ export default function ArticleCard({ article }) {
                 <Box>
                     <Image
                         src={article.imgUrl}
-                        height={720}
-                        width={1280}
+                        height={article.imgHeight}
+                        width={article.imgWidth}
                         layout='responsive'
+                        priority={!lazyLoad}
                     />
                 </Box>
             </Box>
