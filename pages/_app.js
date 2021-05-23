@@ -33,7 +33,6 @@ function MyApp({ Component, pageProps }) {
 
             <meta name="msapplication-navbutton-color" content="#AE72CE" />
             <meta name="msapplication-TileColor" content="#AE72CE" />
-            <meta name="msapplication-TileImage" content="ms-icon-144x144.png" />
             <meta name="msapplication-config" content="browserconfig.xml"></meta>
 
             <meta name="application-name" content="МГ ТВ" />
@@ -41,13 +40,6 @@ function MyApp({ Component, pageProps }) {
             <meta name="msapplication-starturl" content="/articles"></meta>
 
             <link href="/manifest.json" rel="manifest"></link>
-
-            <link href="/icons/touch-icon-iphone.png" rel="apple-touch-icon" />
-            <link href="/icons/touch-icon-ipad.png" rel="apple-touch-icon" sizes="76x76" />
-            <link href="/icons/touch-icon-iphone-retina.png" rel="apple-touch-icon" sizes="120x120" />
-            <link href="/icons/touch-icon-ipad-retina.png" rel="apple-touch-icon" sizes="152x152" />
-
-            <link href="/icons/touch-icon-start-up-320x480.png" rel="apple-touch-startup-image" />
 
             <link href="/icons/icon-192x192.png" rel="icon" sizes="192x192" />
             <link href="/icons/icon-128x128.png" rel="icon" sizes="128x128" />
