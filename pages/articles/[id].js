@@ -2,9 +2,7 @@ import { getArticleData, getArticlesData } from "../../lib/articles"
 import { Text, Box, Heading } from '@chakra-ui/react'
 import Image from 'next/image'
 import TopBar from "../../components/topbar/topbar"
-import * as nodedt from 'node-datetime'
-
-import firebaseAdmin from '../../firebaseAdmin'
+import { useRouter } from 'next/router'
 
 export async function getStaticPaths() {
 
@@ -21,17 +19,13 @@ export async function getStaticPaths() {
 
     return {
         paths,
-        fallback: false
+        fallback: true
     }
 }
 
 export async function getStaticProps({ params }) {
     const articleData = await getArticleData(params.id)
 
-    const dt = nodedt.create((new Date()).valueOf() + 100000)
-    const exp = dt.format("m-d-Y H:M:S")
-
-    const file = firebaseAdmin.storage().bucket().file(params.id)
     let imgUrl = `https://firebasestorage.googleapis.com/v0/b/mg-tv-308523.appspot.com/o/${params.id}?alt=media`
     return {
         props: {
@@ -43,6 +37,13 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Article({ articleData, imgUrl }) {
+
+    const router = useRouter()
+
+    if (router.isFallback) {
+        return <Box>Loading...</Box>
+    }
+
     return (
         <>
             <TopBar />
