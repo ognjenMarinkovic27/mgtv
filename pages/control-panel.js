@@ -14,6 +14,7 @@ import TopBar from '../components/topbar/topbar';
 import firebase from '../firebase'
 import ArticlesList from '../components/articles-list/articles-list';
 
+import Head from 'next/head'
 
 
 
@@ -84,6 +85,10 @@ export default function ControlPanel({ articles }) {
 
     return (
         <Box>
+            <Head>
+                <title>{'МГ ТВ: Контролна табла'}</title>
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+            </Head>
             <TopBar/>
             <Box display='flex' flexDirection='column' alignItems='center' bg='url(email-pattern.png)' minH='100vh'>
                 {!showCreatePost ? <Button my='16px' w={['100%', '100%', '90%', '75%']} bg='#FAFAFA' shadow='lg' onClick={()=>{setShowCreatePost(1)}}>

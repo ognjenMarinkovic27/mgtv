@@ -17,6 +17,7 @@ export default function ArticleCard({ article, lazyLoad }) {
                         width={article.imgWidth}
                         layout='responsive'
                         priority={!lazyLoad}
+                        alt='Article Image'
                     />
                 </Box>
             </Box>

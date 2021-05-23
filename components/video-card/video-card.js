@@ -15,6 +15,7 @@ export default function VideoCard ({ videoId, title }) {
                     width={445}
                     height={250}
                     priority={true}
+                    alt='Youtube Video Thumbnail'
                 />
                 {
                     /*  TODO:

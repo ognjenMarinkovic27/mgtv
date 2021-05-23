@@ -9,6 +9,8 @@ import firebase from '../firebase'
 import Link from 'next/link';
 import { checkToken } from '../auth/checkToken';
 
+import Head from 'next/head'
+
 export async function getServerSideProps(ctx) {
 
     const cookies = nookies.get(ctx);
@@ -21,28 +23,34 @@ export default function Authenticated({ message }) {
     const router = useRouter();
 
     return (
-        <Box h='100vh' display='grid' placeItems='center'>
-            <Box display='flex' alignItems='center' flexDirection='column'>
-                <Text mb='16px'>{ message }</Text>
-                <Button
-                    onClick={async () => {
-                    await firebase
-                        .auth()
-                        .signOut()
-                        .then(() => {
-                        router.push("/");
-                        });
-                    }}
-                    mb='16px'
-                >
-                    Излогуј се
-                </Button>
-                <Link href='/control-panel'>
-                    <Button>
-                        Контролна табла
+        <>
+            <Head>
+                <title>{'МГ ТВ: ' + message}</title>
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+            </Head>
+            <Box h='100vh' display='grid' placeItems='center'>
+                <Box display='flex' alignItems='center' flexDirection='column'>
+                    <Text mb='16px'>{ message }</Text>
+                    <Button
+                        onClick={async () => {
+                        await firebase
+                            .auth()
+                            .signOut()
+                            .then(() => {
+                            router.push("/");
+                            });
+                        }}
+                        mb='16px'
+                    >
+                        Излогуј се
                     </Button>
-                </Link>
+                    <Link href='/control-panel'>
+                        <Button>
+                            Контролна табла
+                        </Button>
+                    </Link>
+                </Box>
             </Box>
-        </Box>
+        </>
     );
 }

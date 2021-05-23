@@ -23,13 +23,14 @@ export default function NewestVideo ({ video }) {
                 {showEmbed ? <YoutubeEmbed key={video.snippet.resourceId.videoId} embedId={video.snippet.resourceId.videoId} /> : 
                 <Box>
                     <AspectRatio w={[320,400,560,800,800]} ratio={16 / 9} position='relative'>
-                        <Button borderRadius='0' onClick={() => {
+                        <Button aria-label='youtube video' borderRadius='0' onClick={() => {
                             setShowEmbed(1)
                         }}>
                             <Image
                                 src={`https://i.ytimg.com/vi/${video.snippet.resourceId.videoId}/maxresdefault.jpg`}
                                 layout='fill'
                                 objectFit='contain'
+                                alt='Newest Video Thumbnail'
                             />
                             <Box position='absolute' zIndex='1'>
                                 <Image 
@@ -37,6 +38,7 @@ export default function NewestVideo ({ video }) {
                                     height={64}
                                     width={64}
                                     priority={true}
+                                    alt='Youtube Logo'
                                 />
                             </Box>
                             <Box w='100%' h='100%' position='absolute' bg='rgba(0, 0, 0, 0.3);'></Box>

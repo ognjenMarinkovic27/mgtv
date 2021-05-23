@@ -1,14 +1,10 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
 
 import TopBar from '../components/topbar/topbar'
 
 import { Box } from '@chakra-ui/react'
 import NewestVideo from '../components/newest-video/newest-video'
 import OtherVideos from '../components/other-videos/other-videos'
-
-import { getArticlesData } from '../lib/articles'
-import { getImageUrls } from '../lib/adminImages'
 
 const PLAYLIST_ID = "UU94DrDp_sU68e2nol9-sJJg";
 const YOUTUBE_API="https://youtube.googleapis.com/youtube/v3/playlistItems"
@@ -18,26 +14,25 @@ export async function getStaticProps() {
   const data = await res.json()
   const videos = await data.items
 
-  const articlesWithoutUrl = await getArticlesData()
-
-  const articles = await getImageUrls(articlesWithoutUrl)
-
   return {
     props: {
       videos,
-      articles
     },
     revalidate: 60
   }
 }
 
-export default function Home({ videos, articles }) {
+export default function Home({ videos }) {
 
   const newestVideo = videos[0]
   const otherVideos = videos.slice(1)
 
   return (
-    <> 
+    <>
+      <Head>
+                <title>{'МГ ТВ: Насловна'}</title>
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+            </Head>
       <TopBar />
       <Box display="flex" flexDirection="column" alignItems="center">
         <NewestVideo video={newestVideo} />

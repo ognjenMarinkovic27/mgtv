@@ -3,6 +3,7 @@ import { Text, Box, Heading } from '@chakra-ui/react'
 import Image from 'next/image'
 import TopBar from "../../components/topbar/topbar"
 import { useRouter } from 'next/router'
+import Head from 'next/head'
 
 export async function getStaticPaths() {
 
@@ -46,6 +47,10 @@ export default function Article({ articleData, imgUrl }) {
 
     return (
         <>
+            <Head>
+                <title>{'МГ ТВ: ' + articleData.title}</title>
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+            </Head>
             <TopBar />
             <Box backgroundImage='url(/email-pattern.png)'>
                 <Box m='auto' w={['100%', '100%', '70%']} display='flex' flexDir='column' position='relative'>
