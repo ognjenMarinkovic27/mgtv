@@ -30,9 +30,8 @@ export default function Home({ videos }) {
   return (
     <>
       <Head>
-                <title>{'МГ ТВ: Насловна'}</title>
-                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-            </Head>
+          <title>{'МГ ТВ: Насловна'}</title>
+      </Head>
       <TopBar />
       <Box display="flex" flexDirection="column" alignItems="center">
         <NewestVideo video={newestVideo} />

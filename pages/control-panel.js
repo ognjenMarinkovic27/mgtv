@@ -87,7 +87,6 @@ export default function ControlPanel({ articles }) {
         <Box>
             <Head>
                 <title>{'МГ ТВ: Контролна табла'}</title>
-                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
             <TopBar/>
             <Box display='flex' flexDirection='column' alignItems='center' bg='url(email-pattern.png)' minH='100vh'>

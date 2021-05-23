@@ -37,7 +37,6 @@ export default function Login() {
         <>
             <Head>
                 <title>{'МГ ТВ: Улогуј се'}</title>
-                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
             <Box h='100vh' bg="linear-gradient(#AE72CE, #9C56C2);" display='grid' placeItems='center'>
 

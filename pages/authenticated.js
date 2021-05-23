@@ -26,7 +26,6 @@ export default function Authenticated({ message }) {
         <>
             <Head>
                 <title>{'МГ ТВ: ' + message}</title>
-                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
             <Box h='100vh' display='grid' placeItems='center'>
                 <Box display='flex' alignItems='center' flexDirection='column'>

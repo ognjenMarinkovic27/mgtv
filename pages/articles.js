@@ -28,7 +28,6 @@ export default function Articles({ articles }) {
         <>
             <Head>
                 <title>{'МГ ТВ: Чланци'}</title>
-                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
             </Head>
             <Box backgroundImage='url(email-pattern.png)'>
                 <TopBar />
