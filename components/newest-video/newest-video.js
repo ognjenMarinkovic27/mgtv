@@ -10,8 +10,6 @@ export default function NewestVideo ({ video }) {
 
     const [showEmbed, setShowEmbed] = useState(0)
 
-    console.log
-
     return (
         <Box backgroundImage='url(email-pattern.png)' w="100%" display="flex" flexDir="column" alignItems="center" p="32px">
             <div dangerouslySetInnerHTML={{__html:"<!-- Background pattern from Toptal Subtle Patterns -->"}} />

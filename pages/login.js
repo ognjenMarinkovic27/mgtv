@@ -28,7 +28,6 @@ export default function Login() {
     const { register, handleSubmit } = useForm()
 
     async function onSubmit(data) {
-        console.log(data.email, data.password);
         await firebase.auth().signInWithEmailAndPassword(data.email, data.password);
         window.location.href='/authenticated';
     }

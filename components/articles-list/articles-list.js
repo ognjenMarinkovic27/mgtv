@@ -10,7 +10,7 @@ export default function ArticlesList({ articles, deleteButtons }) {
     const router = useRouter();
 
     return (
-        <UnorderedList listStyleType='none' m='0' p='8px'>
+        <UnorderedList listStyleType='none' m='0' p='8px' w='100%'>
             {articles.map((article, index) => {
                 
                 const lazyLoad = (index < 3)

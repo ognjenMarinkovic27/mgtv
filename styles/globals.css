@@ -5,6 +5,10 @@ body {
   font-language-override: "ENG";
   -webkit-locale: 'en';
 }
+button, input, textarea {
+  font-language-override: "ENG";
+  -webkit-locale: 'en';
+}
 
 a {
   color: inherit;
